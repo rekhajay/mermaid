@@ -1,47 +1,40 @@
-# TAX Preparer Projects – Flow Diagram (Warehouse Extract Boxes with TBD + Path Labels)
+# TAX Preparer Projects – Flow Diagram (Branch-Specific Numbering: A / B)
 
 ```mermaid
 graph TD
-    %% Start Nodes
-    A["2025 Projects"]:::start --> A1_role["Manual Workday Team"]:::role
-    A1_role --> A1["Extract Forecast Data from Warehouse Whole Year"]
+    %% 2025 Branch
+    A["A1. 2025 Projects"]:::start --> A1_role["Manual Workday Team"]:::role
+    A1_role --> A1["A2. Extract Forecast Data from Warehouse Whole Year"]
+    A1 --> A2["A3. Export Forecasts into Dayshape 7/1/2025 and Forward (Template Provided)"]
+    A2 --> A3["A4. Steps to Create Demand in Dayshape from Exported Workday Project Forecasts"]
+    A3 -->|Integration DS Packaged| A4["A5. Create 2025 Projects in Dayshape (Batch Processing)"]
 
-    B["2026 Projects<br/>Full Roll Strategy:<br/>&bull; Only the projects rolled by 11/25 TAX, 12/15 for A&amp;A and RaaS<br/><br/>Skinny Roll Strategy:<br/>&bull; Any 2026 projects created after the production cutover for DS — Demand happens in DS"]:::start --> B1["Strategy 1: Full Roll 2025 Projects With Forecast and RPL"]
-    B --> B2["Strategy 2: Skinny Roll 2025 Projects Minus Forecast and RPL"]
+    A4 --> E1_role["Manual DS Team"]:::role
+    E1_role --> A5["A6. Import Forecasts Into Dayshape 7/1/2025 and Forward"]
+    A5 -->|Integration DS Packaged| A6["A7. Upsert RPL Lines Back to Workday (2025 7/1 and Forward)"]
+    A6 --> A7["A8. Delete and Replace Forecast in Workday With DS Forecast (Cutover) – ONLY 7/1/2025 and Forward Forecasts Will Exist"]
+
+    %% 2026 Branch
+    B["B1. 2026 Projects<br/>Full Roll Strategy:<br/>&bull; Only the projects rolled by 11/25 TAX, 12/15 for A&amp;A and RaaS<br/><br/>Skinny Roll Strategy:<br/>&bull; Any 2026 projects created after the production cutover for DS — Demand happens in DS"]:::start --> B2["B2. Strategy 1: Full Roll 2025 Projects With Forecast and RPL"]
+    B --> B3["B3. Strategy 2: Skinny Roll 2025 Projects Minus Forecast and RPL"]
 
     %% Branch Details
-    B1 --> B1a_role["Manual Workday Team"]:::role
-    B1a_role --> B1a["Extract Forecast Data from Warehouse (Date range and Actuals vs Plan) TBD based on what Tax wants (Full Roll Path)"]
-
     B2 --> B2a_role["Manual Workday Team"]:::role
-    B2a_role --> B2a["Extract Forecast Data from Warehouse (Date range and Actuals vs Plan) TBD based on what Tax wants (Skinny Roll Path)"]
+    B2a_role --> B4["B4. Extract Forecast Data from Warehouse (Date range and Actuals vs Plan) TBD based on what Tax wants (Full Roll Path)"]
 
-    %% Exports
-    A1 --> A2["Export Forecasts into Dayshape 7/1/2025 and Forward (Template Provided)"]
-    B1a --> B3["Export Forecasts into Dayshape Jan–Dec 2026 (Template Provided)<br/>Final Date Span decided based on what Tax wants"]
-    B2a --> B3
+    B3 --> B3a_role["Manual Workday Team"]:::role
+    B3a_role --> B5["B5. Extract Forecast Data from Warehouse (Date range and Actuals vs Plan) TBD based on what Tax wants (Skinny Roll Path)"]
 
-    %% Demand creation
-    A2 --> C["Steps to Create Demand in Dayshape from Exported Workday Project Forecasts"]
-    B3 --> C
+    B4 --> B6["B6. Export Forecasts into Dayshape Jan–Dec 2026 (Template Provided)<br/>Final Date Span decided based on what Tax wants"]
+    B5 --> B6
+    B6 --> B7["B7. Steps to Create Demand in Dayshape from Exported Workday Project Forecasts"]
 
-    %% DS Integration
-    C -->|Integration DS Packaged| D1["Create 2025 Projects in Dayshape (Batch Processing)"]
-    C -->|Integration DS Packaged| D2["Create 2026 Projects in Dayshape (Batch Processing)"]
+    B7 -->|Integration DS Packaged| B8["B8. Create 2026 Projects in Dayshape (Batch Processing)"]
 
-    %% Manual DS Team
-    D1 --> E1_role["Manual DS Team"]:::role
-    E1_role --> E1["Import Forecasts Into Dayshape 7/1/2025 and Forward"]
-
-    D2 --> E2_role["Manual DS Team"]:::role
-    E2_role --> E2["Import Forecasts Into Dayshape Jan–Dec 2026"]
-
-    %% Writeback to Workday
-    E1 -->|Integration DS Packaged| F1["Upsert RPL Lines Back to Workday (2025 7/1 and Forward)"]
-    F1 --> G1["Delete and Replace Forecast in Workday With DS Forecast (Cutover) – For 2025 Projects, ONLY 7/1/2025 and Forward Forecasts Will Exist"]
-
-    E2 -->|Integration DS Packaged| F2["Upsert RPL Lines Back to Workday (2026 Jan–Dec)"]
-    F2 --> G2["Delete and Replace Forecast in Workday With DS Forecast (Cutover) – For 2026 Projects, Full Year Forecasts Will Exist"]
+    B8 --> E2_role["Manual DS Team"]:::role
+    E2_role --> B9["B9. Import Forecasts Into Dayshape Jan–Dec 2026"]
+    B9 -->|Integration DS Packaged| B10["B10. Upsert RPL Lines Back to Workday (2026 Jan–Dec)"]
+    B10 --> B11["B11. Delete and Replace Forecast in Workday With DS Forecast (Cutover) – Full Year Forecasts Will Exist"]
 
     %% Styles
     classDef start stroke:#008000,stroke-width:4px;
