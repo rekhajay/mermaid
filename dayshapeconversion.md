@@ -1,4 +1,4 @@
-# TAX Preparer Projects – Flow Diagram (Branch-Specific Numbering + Common Flow)
+# TAX Preparer Projects – Flow Diagram (Final with A/B/C Numbering + Skinny Roll Note)
 
 ```mermaid
 graph TD
@@ -16,7 +16,7 @@ graph TD
     B2a_role --> B4["B4. Extract Forecast Data from Warehouse (Date range and Actuals vs Plan) TBD based on what Tax wants (Full Roll Path)"]
 
     B3 --> B3a_role["Manual Workday Team"]:::role
-    B3a_role --> B5["B5. Extract Forecast Data from Warehouse (Date range and Actuals vs Plan) TBD based on what Tax wants (Skinny Roll Path)"]
+    B3a_role --> B5["B5. Extract Forecast Data from Warehouse (Date range and Actuals vs Plan) TBD based on what Tax wants<br/><font color='red'>Not clear what the User finally sees for these Projects in Dayshape in terms of Demand after the Conversion</font><br/>(Skinny Roll Path)"]
 
     %% Export to DS (2026)
     B4 --> B6["B6. Export Forecasts into Dayshape Jan–Dec 2026 (Template Provided)<br/>Final Date Span decided based on what Tax wants"]
