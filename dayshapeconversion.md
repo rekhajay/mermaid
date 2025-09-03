@@ -1,4 +1,4 @@
-# TAX Preparer Projects – Flow Diagram (2026 Export Box Updated)
+# TAX Preparer Projects – Flow Diagram (Warehouse Extract Boxes with TBD + Path Labels)
 
 ```mermaid
 graph TD
@@ -6,15 +6,15 @@ graph TD
     A["2025 Projects"]:::start --> A1_role["Manual Workday Team"]:::role
     A1_role --> A1["Extract Forecast Data from Warehouse Whole Year"]
 
-    B["2026 Projects<br/>Full Roll Strategy:<br/>&bull; Only the projects rolled by 11/25 TAX, 12/15 for A&amp;A and RaaS<br/><br/>Skinny Roll Strategy:<br/>&bull; Any 2026 projects created after the production cutover for DS — Demand happens in DS"]:::start --> B1["Strategy 1: Skinny Roll 2025 Projects Minus Forecast and RPL"]
-    B --> B2["Strategy 2: Full Roll 2025 Projects With Forecast and RPL"]
+    B["2026 Projects<br/>Full Roll Strategy:<br/>&bull; Only the projects rolled by 11/25 TAX, 12/15 for A&amp;A and RaaS<br/><br/>Skinny Roll Strategy:<br/>&bull; Any 2026 projects created after the production cutover for DS — Demand happens in DS"]:::start --> B1["Strategy 1: Full Roll 2025 Projects With Forecast and RPL"]
+    B --> B2["Strategy 2: Skinny Roll 2025 Projects Minus Forecast and RPL"]
 
     %% Branch Details
     B1 --> B1a_role["Manual Workday Team"]:::role
-    B1a_role --> B1a["Extract Forecast Data from Warehouse Whole Year (Skinny Roll Path)"]
+    B1a_role --> B1a["Extract Forecast Data from Warehouse (Date range and Actuals vs Plan) TBD based on what Tax wants (Full Roll Path)"]
 
     B2 --> B2a_role["Manual Workday Team"]:::role
-    B2a_role --> B2a["Extract Forecast Data from Warehouse Whole Year (Full Roll Path)"]
+    B2a_role --> B2a["Extract Forecast Data from Warehouse (Date range and Actuals vs Plan) TBD based on what Tax wants (Skinny Roll Path)"]
 
     %% Exports
     A1 --> A2["Export Forecasts into Dayshape 7/1/2025 and Forward (Template Provided)"]
