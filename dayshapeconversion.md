@@ -2,13 +2,13 @@
 
 ```mermaid
 graph TD
-    %% 2025 Branch
-    A["A1. 2025 Projects"]:::start --> A1_role["Manual Workday Team"]:::role
+    %% 2025 . Project Start Date, Renewal Year = 2024 Branch
+    A["A1. 2025 Project Start Date , Renewal Year = 2024 "]:::start --> A1_role["Manual Workday Team"]:::role
     A1_role --> A2["A2. Extract Forecast Data from Warehouse Whole Year"]
     A2 --> A3["A3. Export Forecasts into Dayshape 7/1/2025 and Forward (Template Provided)"]
 
-    %% 2026 Branch
-    B["B1. 2026 Projects<br/>Full Roll Strategy:<br/>&bull; Only the projects rolled by 11/25 TAX, 12/15 for A&amp;A and RaaS<br/><br/>Skinny Roll Strategy:<br/>&bull; Any 2026 projects created after the production cutover for DS — Demand happens in DS"]:::start --> B2["B2. Strategy 1: Full Roll 2025 Projects With Forecast and RPL"]
+    %% 2026 (Project Start Date), Renewal Year = 2025 Branch
+    B["B1. 2026 Project Start Date , Renewal Year = 2025 <br/>Full Roll Strategy:<br/>&bull; Only the projects rolled by 11/25 TAX, 12/15 for A&amp;A and RaaS<br/><br/>Skinny Roll Strategy:<br/>&bull; Any 2026 projects created after the production cutover for DS — Demand happens in DS"]:::start --> B2["B2. Strategy 1: Full Roll 2025 Projects With Forecast and RPL"]
     B --> B3["B3. Strategy 2: Skinny Roll 2025 Projects Minus Forecast and RPL"]
 
     %% 2026 Extracts
@@ -16,7 +16,10 @@ graph TD
     B2a_role --> B4["B4. Extract Forecast Data from Warehouse (Date range and Actuals vs Plan) TBD based on what Tax wants (Full Roll Path)"]
 
     B3 --> B3a_role["Manual Workday Team"]:::role
-    B3a_role --> B5["B5. Extract Forecast Data from Warehouse (Date range and Actuals vs Plan) TBD based on what Tax wants<br/><font color='red'>Not clear what the User finally sees for these Projects in Dayshape in terms of Demand after the Conversion</font><br/>(Skinny Roll Path)"]
+    B3a_role --> B5["B5. Extract Forecast Data from Warehouse (Date range and Actuals vs Plan) TBD based on what Tax wants<br/><font color='red'>Not clear what the User finally sees for these Projects in Dayshape in terms of Demand after the Conversion</font><br/>
+<br/><font color='red'> Expectation - Show forecast based on prior year actuals (at least till Jan - October)</font><br/>
+
+(Skinny Roll Path)"]
 
     %% Export to DS (2026)
     B4 --> B6["B6. Export Forecasts into Dayshape Jan–Dec 2026 (Template Provided)<br/>Final Date Span decided based on what Tax wants"]
